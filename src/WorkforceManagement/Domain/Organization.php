@@ -16,13 +16,14 @@ use Symfony\Component\Uid\Ulid;
 #[EventSourcingAggregate]
 final class Organization
 {
-    use WithAggregateVersioning;
+    private const ARCHIVED_PLAN = Subscription::READ_ONLY;
     #[AggregateIdentifier]
     private Ulid $organizationId;
+    use WithAggregateVersioning;
+
     private bool $active;
     private Subscription $plan;
     private array $activeUsers = [];
-    private const ARCHIVED_PLAN = Subscription::READ_ONLY;
 
     /**
      * @throws OrganizationAlreadyActive
