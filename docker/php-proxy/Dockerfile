@@ -1,6 +1,5 @@
 FROM nginxinc/nginx-unprivileged:alpine AS base
 
-FROM base AS base
 RUN rm /etc/nginx/nginx.conf
 RUN rm /etc/nginx/conf.d/default.conf
 
