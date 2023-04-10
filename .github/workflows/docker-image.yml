@@ -1,0 +1,27 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "production" ]
+  pull_request:
+    branches: [ "production" ]
+
+jobs:
+
+  build-php-fpm:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build php-fpm image
+      run: docker build . --file docker/php-fpm/Dockerfile --tag php-fpm:$(branche):$(date +%s)
+
+  build-php-proxy:
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build php-proxy image
+      run: docker build . --file docker/php-proxy/Dockerfile --tag php-proxy:$(branche):$(date +%s)  
