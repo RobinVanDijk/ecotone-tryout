@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build php-fpm image
-      run: docker build . --file docker/php-fpm/Dockerfile --tag php-fpm:$(branche):$(date +%s)
+      run: docker build . --file docker/php-fpm/Dockerfile --tag php-fpm:$(branche)-$(date +%s)
 
   build-php-proxy:
     
@@ -24,4 +24,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build php-proxy image
-      run: docker build . --file docker/php-proxy/Dockerfile --tag php-proxy:$(branche):$(date +%s)  
+      run: docker build . --file docker/php-proxy/Dockerfile --tag php-proxy:$(branche)-$(date +%s)  
