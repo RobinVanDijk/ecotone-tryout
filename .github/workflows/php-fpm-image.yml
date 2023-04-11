@@ -33,7 +33,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: production
           file: docker/php-fpm/Dockerfile
-          registry: ${{ env.REGISTRY }}
-          image: ghcr.io/robinvandijk/${{ env.IMAGE_NAME }}
+          tags: ghcr.io/robinvandijk/${{ env.IMAGE_NAME }}
