@@ -2,6 +2,7 @@ version: '3.9'
 
 services:
   php-proxy:
+    image: ghcr.io/robinvandijk/php-proxy-alpine:latest
     build:
       dockerfile: ./docker/php-proxy/Dockerfile
       context: ../
@@ -11,6 +12,7 @@ services:
       - workforce-management
 
   php-fpm:
+    image: ghcr.io/robinvandijk/php-fpm-alpine:latest
     build:
       dockerfile: ./docker/php-fpm/Dockerfile
       context: ../
