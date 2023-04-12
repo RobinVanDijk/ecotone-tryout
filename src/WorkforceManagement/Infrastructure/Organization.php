@@ -8,9 +8,9 @@ use Symfony\Component\Uid\Ulid;
 class Organization
 {
     public function __construct(
-        public Ulid $organizationId,
+        public string $organizationId,
         public string $name,
         public bool $active,
-        public Subscription $plan,
+        public string $plan,
     ) {}
 }

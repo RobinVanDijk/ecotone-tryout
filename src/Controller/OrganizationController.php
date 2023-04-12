@@ -19,8 +19,8 @@ class OrganizationController
     {
         $subscribeOrganizationCommand = new Subscribe(
             "My org",
+            Subscription::FREE->toString(),
             true,
-            Subscription::FREE
         );
 
         $result = $this->commandBus->send($subscribeOrganizationCommand);

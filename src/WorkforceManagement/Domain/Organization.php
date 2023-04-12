@@ -18,7 +18,7 @@ final class Organization
 {
     private const ARCHIVED_PLAN = Subscription::READ_ONLY;
     #[AggregateIdentifier]
-    private Ulid $organizationId;
+    private string $organizationId;
     use WithAggregateVersioning;
 
     private bool $active;
@@ -26,17 +26,12 @@ final class Organization
     private array $activeUsers = [];
 
     /**
-     * @throws OrganizationAlreadyActive
      * @throws ExpiredPlan
      */
     #[CommandHandler]
-    public function subscribe(Subscribe $command): array
+    public static function subscribe(Subscribe $command): array
     {
-        if ($this->active === true) {
-            throw new OrganizationAlreadyActive;
-        }
-
-        if (!$command->getPlan()->isActive()) {
+        if (!Subscription::fromString($command->getPlan())->isActive()) {
             throw new ExpiredPlan;
         }
 
@@ -58,7 +53,7 @@ final class Organization
             throw new OrganizationAlreadyArchived;
         }
 
-        return [new OrganizationArchived($command->getOrganizationId(), self::ARCHIVED_PLAN)];
+        return [new OrganizationArchived($command->getOrganizationId(), self::ARCHIVED_PLAN->toString())];
     }
 
     #[EventSourcingHandler]
@@ -66,13 +61,13 @@ final class Organization
     {
         $this->organizationId = $event->getOrganizationId();
         $this->active = $event->isActive();
-        $this->plan = $event->getPlan();
+        $this->plan = Subscription::fromString($event->getPlan());
     }
 
     #[EventSourcingHandler]
     public function archived(OrganizationArchived $event): void
     {
         $this->active = false;
-        $this->plan = $event->getSubscription();
+        $this->plan = Subscription::fromString($event->getSubscription());
     }
 }

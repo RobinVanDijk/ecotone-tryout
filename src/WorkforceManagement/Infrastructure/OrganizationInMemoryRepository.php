@@ -25,7 +25,7 @@ class OrganizationInMemoryRepository
         );
     }
 
-    public function archive(Ulid $organizationId, Subscription $subscription): bool
+    public function archive(string $organizationId, string $subscription): bool
     {
         foreach ($this->organizations as &$organization) {
             if ($organization->organizationId->equals($organizationId)) {

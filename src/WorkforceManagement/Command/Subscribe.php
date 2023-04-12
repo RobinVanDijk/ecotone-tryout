@@ -2,26 +2,25 @@
 
 namespace App\WorkforceManagement\Command;
 
-use App\WorkforceManagement\Domain\Subscription;
 use Symfony\Component\Uid\Ulid;
 
 readonly class Subscribe
 {
-    private Ulid $organizationId;
+    private string $organizationId;
 
     public function __construct(
         private string       $name,
+        private string $plan,
         private bool         $active = true,
-        private Subscription $plan = Subscription::FREE,
     )
     {
-        $this->organizationId = new Ulid();
+        $this->organizationId = Ulid::generate();
     }
 
     /**
      * @return Ulid
      */
-    public function getOrganizationId(): Ulid
+    public function getOrganizationId(): string
     {
         return $this->organizationId;
     }
@@ -43,9 +42,9 @@ readonly class Subscribe
     }
 
     /**
-     * @return Subscription
+     * @return string
      */
-    public function getPlan(): Subscription
+    public function getPlan(): string
     {
         return $this->plan;
     }

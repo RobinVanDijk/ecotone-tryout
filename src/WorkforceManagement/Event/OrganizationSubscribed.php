@@ -9,23 +9,23 @@ readonly class OrganizationSubscribed
 {
 
     /**
-     * @param Ulid $organizationId
+     * @param string $organizationId
      * @param string $name
      * @param bool $active
-     * @param Subscription $plan
+     * @param string $plan
      */
     public function __construct(
-        private Ulid         $organizationId,
+        private string         $organizationId,
         private string       $name,
         private bool         $active,
-        private Subscription $plan
+        private string $plan
     ) {
     }
 
     /**
-     * @return Ulid
+     * @return string
      */
-    public function getOrganizationId(): Ulid
+    public function getOrganizationId(): string
     {
         return $this->organizationId;
     }
@@ -47,9 +47,9 @@ readonly class OrganizationSubscribed
     }
 
     /**
-     * @return Subscription
+     * @return string
      */
-    public function getPlan(): Subscription
+    public function getPlan(): string
     {
         return $this->plan;
     }

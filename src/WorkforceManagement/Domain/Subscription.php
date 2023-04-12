@@ -10,6 +10,28 @@ enum Subscription
     case PREMIUM;
     case READ_ONLY;
 
+    public static function fromString(string $getPlan): self
+    {
+        return match ($getPlan) {
+            'Subscription::FREE' => Subscription::FREE,
+            'Subscription::TRYOUT' => Subscription::TRYOUT,
+            'Subscription::PLUS' => Subscription::PLUS,
+            'Subscription::PREMIUM' => Subscription::PREMIUM,
+            'Subscription::READ_ONLY' => Subscription::READ_ONLY,
+        };
+    }
+
+    public function toString(): string
+    {
+        return match ($this) {
+            Subscription::FREE => 'Subscription::FREE',
+            Subscription::TRYOUT => 'Subscription::TRYOUT',
+            Subscription::PLUS => 'Subscription::PLUS',
+            Subscription::PREMIUM => 'Subscription::PREMIUM',
+            Subscription::READ_ONLY => 'Subscription::READ_ONLY',
+        };
+    }
+
     public function userLimit(): int
     {
         return match ($this) {

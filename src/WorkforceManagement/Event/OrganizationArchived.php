@@ -8,25 +8,25 @@ use Symfony\Component\Uid\Ulid;
 readonly class OrganizationArchived
 {
     /**
-     * @param Ulid $organizationId
-     * @param Subscription $subscription
+     * @param string $organizationId
+     * @param string $subscription
      */
-    public function __construct(private Ulid $organizationId, private Subscription $subscription)
+    public function __construct(private string $organizationId, private string $subscription)
     {
     }
 
     /**
-     * @return Ulid
+     * @return string
      */
-    public function getOrganizationId(): Ulid
+    public function getOrganizationId(): string
     {
         return $this->organizationId;
     }
 
     /**
-     * @return Subscription
+     * @return string
      */
-    public function getSubscription(): Subscription
+    public function getSubscription(): string
     {
         return $this->subscription;
     }
