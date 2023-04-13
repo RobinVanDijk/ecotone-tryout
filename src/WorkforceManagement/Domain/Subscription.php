@@ -2,34 +2,17 @@
 
 namespace App\WorkforceManagement\Domain;
 
-enum Subscription
+enum Subscription: string
 {
-    case FREE;
-    case TRYOUT;
-    case PLUS;
-    case PREMIUM;
-    case READ_ONLY;
+    case FREE = 'FREE';
+    case TRYOUT = 'TRYOUT';
+    case PLUS = 'PLUS';
+    case PREMIUM = 'PREMIUM';
+    case READ_ONLY = 'READ_ONLY';
 
     public static function fromString(string $getPlan): self
     {
-        return match ($getPlan) {
-            'Subscription::FREE' => Subscription::FREE,
-            'Subscription::TRYOUT' => Subscription::TRYOUT,
-            'Subscription::PLUS' => Subscription::PLUS,
-            'Subscription::PREMIUM' => Subscription::PREMIUM,
-            'Subscription::READ_ONLY' => Subscription::READ_ONLY,
-        };
-    }
-
-    public function toString(): string
-    {
-        return match ($this) {
-            Subscription::FREE => 'Subscription::FREE',
-            Subscription::TRYOUT => 'Subscription::TRYOUT',
-            Subscription::PLUS => 'Subscription::PLUS',
-            Subscription::PREMIUM => 'Subscription::PREMIUM',
-            Subscription::READ_ONLY => 'Subscription::READ_ONLY',
-        };
+        return self::from($getPlan);
     }
 
     public function userLimit(): int

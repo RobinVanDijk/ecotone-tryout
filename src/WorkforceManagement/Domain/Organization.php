@@ -53,7 +53,7 @@ final class Organization
             throw new OrganizationAlreadyArchived;
         }
 
-        return [new OrganizationArchived($command->getOrganizationId(), self::ARCHIVED_PLAN->toString())];
+        return [new OrganizationArchived($command->getOrganizationId(), self::ARCHIVED_PLAN->value)];
     }
 
     #[EventSourcingHandler]

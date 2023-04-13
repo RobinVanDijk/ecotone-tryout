@@ -29,3 +29,6 @@ services:
     Enqueue\Dbal\DbalConnectionFactory:
         factory: [ 'Ecotone\Dbal\DbalConnection', 'createForManagerRegistry' ]
         arguments: [ "@doctrine","default" ]
+
+    App\WorkforceManagement\Infrastructure\OrganizationInMemoryRepository:
+        factory: [ 'App\WorkforceManagement\Infrastructure\OrganizationInMemoryRepository', 'getInstance' ]
